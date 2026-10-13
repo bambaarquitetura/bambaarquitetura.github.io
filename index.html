@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="canonical" href="https://bambaarquitetura.com.br/">
+<meta property="og:url" content="https://bambaarquitetura.com.br/">
+<meta property="og:type" content="website">
+<title>Bamba Arquitetura</title>
+<meta name="description" content="Bamba Arquitetura & Interiores, escritório da arquiteta e urbanista Viviane Carvalho. Projetos residenciais, de interiores e comerciais em Teresópolis, no Rio de Janeiro e online.">
+<meta property="og:title" content="Bamba Arquitetura & Interiores">
+<meta property="og:description" content="Uma arquitetura pode ter personalidade e, ainda assim, ser inteiramente de quem a ocupa.">
+<meta property="og:image" content="https://bambaarquitetura.com.br/img/abertura.jpg">
+<link rel="icon" href="img/monograma-favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: a apresentação institucional virou página. Faixas alternadas de areia e bege,
+   uma faixa terracota abrindo e fechando, projetos como pequeno editorial. */
+:root {
+  --areia: #F4ECE1;
+  --bege: #EADFD0;
+  --cafe: #2E2620;
+  --texto: #4A3F37;
+  --suave: #5A4E44;
+  --terra: #C8824F;
+  --terra-escuro: #96562F;
+  --fio: #B79E85;
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+  --largura: 76rem;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background: var(--areia);
+  color: var(--cafe);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--terra-escuro); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.08; margin: 0; text-wrap: balance; color: var(--cafe); }
+p { margin: 0; }
+
+.wrap { width: 100%; max-width: calc(var(--largura) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.eyebrow {
+  font-family: var(--sans); font-weight: 500; font-size: 0.8125rem;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--terra-escuro);
+}
+.lead { font-size: clamp(1.125rem, 1.6vw, 1.3rem); line-height: 1.55; color: var(--texto); max-width: 36rem; }
+.secao { padding-block: clamp(4.5rem, 10vw, 8rem); }
+.secao--bege { background: var(--bege); }
+.titulo { font-size: clamp(2.4rem, 5.2vw, 4.25rem); }
+.cabeca { display: flex; flex-direction: column; gap: 1rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+/* Cabeçalho */
+.topo {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--areia) 94%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid color-mix(in srgb, var(--fio) 55%, transparent);
+}
+.topo .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 4.75rem; }
+.topo .logo img { height: 2.6rem; width: auto; }
+.menu { display: flex; gap: clamp(1rem, 2.6vw, 2.5rem); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.menu a { text-decoration: none; padding-block: 0.4rem; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+.menu a:hover { color: var(--terra-escuro); border-color: var(--terra-escuro); }
+.menu .contato-link { border-color: var(--cafe); }
+@media (max-width: 40rem) { .menu .opcional { display: none; } .topo .logo img { height: 2.1rem; } }
+
+/* Abertura: render desfocado ao fundo, logo em claro */
+.abertura { position: relative; overflow: hidden; background: var(--cafe); display: flex; align-items: flex-end; min-height: min(46rem, 86vh); }
+.abertura__fundo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; filter: blur(4px); transform: scale(1.05); }
+.abertura::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(46, 38, 32, 0.78), rgba(46, 38, 32, 0.5) 55%, rgba(46, 38, 32, 0.38)); }
+.abertura__conteudo { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.75rem; padding-block: clamp(6rem, 14vw, 9rem) clamp(3.5rem, 8vw, 6rem); }
+.abertura .eyebrow { color: rgba(244, 236, 225, 0.85); }
+.abertura h1 img { width: min(82vw, 34rem); }
+.abertura__frase { font-family: var(--serif); font-style: italic; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.22; color: var(--areia); max-width: 30ch; text-wrap: balance; }
+.botao {
+  display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.95rem 1.6rem;
+  background: var(--cafe); color: var(--areia); text-decoration: none;
+  font-weight: 500; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: background .25s;
+}
+.botao:hover { background: var(--terra-escuro); }
+
+/* A Bamba */
+.bamba { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2.5rem, 7vw, 6.5rem); align-items: center; }
+.bamba figure { margin: 0; }
+.bamba figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.bamba__texto { display: flex; flex-direction: column; gap: 1.75rem; min-width: 0; }
+.bamba__texto h2 i { color: var(--terra-escuro); }
+.assinatura { border-left: 2px solid var(--terra); padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.15rem; }
+.assinatura strong { font-weight: 500; font-size: 1.2rem; }
+.assinatura span { color: var(--suave); }
+@media (max-width: 48rem) { .bamba { grid-template-columns: 1fr; } .bamba figure { max-width: 26rem; } }
+
+/* Método */
+.encontro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.encontro article { background: var(--areia); padding: clamp(1.75rem, 3.5vw, 2.75rem); display: flex; flex-direction: column; gap: 0.75rem; }
+.encontro h3 { font-size: clamp(1.7rem, 2.6vw, 2.2rem); }
+.encontro p { color: var(--texto); }
+.etapas { list-style: none; margin: clamp(2.5rem, 5vw, 3.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5rem; counter-reset: etapa; }
+.etapas li { border-top: 1px solid var(--fio); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.35rem; counter-increment: etapa; font-weight: 400; }
+.etapas li::before { content: "0" counter(etapa); color: var(--terra-escuro); font-weight: 500; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+@media (max-width: 56rem) { .etapas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 36rem) { .encontro, .etapas { grid-template-columns: 1fr; } }
+
+/* Projetos */
+.projetos { display: flex; flex-direction: column; gap: clamp(5rem, 11vw, 9rem); }
+.projeto { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+.projeto:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
+.projeto:nth-child(even) .projeto__texto { order: 2; }
+.projeto__texto { display: flex; flex-direction: column; gap: 1.1rem; position: sticky; top: 7rem; min-width: 0; }
+.projeto__num { font-family: var(--serif); font-size: clamp(3.5rem, 7vw, 6rem); line-height: 0.9; color: var(--terra); font-weight: 400; font-variant-numeric: lining-nums; }
+.projeto h3 { font-size: clamp(2.1rem, 3.8vw, 3.2rem); }
+.projeto__tipo { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--suave); font-weight: 400; }
+.projeto__texto > p:not([class]) { color: var(--texto); }
+.projeto__nota { font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.35; color: var(--cafe); border-top: 1px solid var(--fio); padding-top: 1.1rem; margin-top: 0.4rem; }
+.galeria { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.galeria button { padding: 0; border: 0; background: var(--bege); cursor: zoom-in; overflow: hidden; display: block; }
+.galeria img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.galeria button:hover img { transform: scale(1.03); }
+.galeria .grande { grid-column: 1 / -1; }
+.galeria .grande img { aspect-ratio: 16 / 10; }
+/* Plantas: inteiras, sem fundo e sem corte */
+.galeria .planta { background: none; }
+.galeria .planta img { aspect-ratio: auto; object-fit: contain; }
+.galeria button.planta:hover img { transform: none; }
+.galeria .vertical { grid-row: span 2; position: relative; min-height: 18rem; }
+.galeria .vertical img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; aspect-ratio: auto; }
+/* Antes e depois em planta (Cozinha Alecrim) */
+.comparativo { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; padding-block: 1rem; }
+.comparativo figure { margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.comparativo figcaption { font-weight: 500; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--suave); }
+.comparativo figure:last-child figcaption { color: var(--terra-escuro); }
+.comparativo button { flex: 1; display: grid; place-items: center; background: none; }
+@media (max-width: 30rem) { .comparativo { grid-template-columns: 1fr; } }
+@media (max-width: 52rem) {
+  .projeto, .projeto:nth-child(even) { grid-template-columns: 1fr; }
+  .projeto:nth-child(even) .projeto__texto { order: 0; }
+  .projeto__texto { position: static; }
+}
+
+/* Vida */
+.vida { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem 1.75rem; }
+.vida div { border-top: 1px solid var(--fio); padding-top: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.vida h3 { font-size: 1.75rem; }
+.vida p { color: var(--texto); }
+@media (max-width: 56rem) { .vida { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 30rem) { .vida { grid-template-columns: 1fr; } }
+
+/* Atuação (faixa café) */
+.atuacao { background: var(--cafe); color: var(--areia); }
+.atuacao h2, .atuacao h3 { color: var(--areia); }
+.atuacao .eyebrow { color: #D9A57C; }
+.servicos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+.servicos div { border-top: 1px solid #7A6A5C; padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.servicos h3 { font-size: clamp(1.8rem, 2.8vw, 2.3rem); }
+.servicos p { color: #D9CBBB; }
+.regiao { margin-top: clamp(3rem, 6vw, 4.5rem); font-size: 0.8125rem; letter-spacing: 0.22em; text-transform: uppercase; color: #D9CBBB; font-weight: 400; }
+@media (max-width: 48rem) { .servicos { grid-template-columns: 1fr; } }
+
+/* Fechamento (faixa terracota) */
+.fechamento { background: var(--terra); }
+.fechamento .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end; }
+.fechamento blockquote { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4.6vw, 4rem); line-height: 1.12; color: var(--cafe); max-width: 22ch; text-wrap: balance; }
+.fechamento img { width: clamp(3.5rem, 6vw, 5.5rem); }
+
+/* Contato */
+.contato { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
+.contato__intro { display: flex; flex-direction: column; gap: 1.5rem; }
+.canais { margin: 0; border-top: 1px solid var(--fio); }
+.canal { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline; padding-block: 1.15rem; border-bottom: 1px solid var(--fio); }
+.canais dt, .canais dd { margin: 0; }
+.canais dt { font-weight: 500; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra-escuro); }
+.canais dd { font-size: 1.2rem; font-weight: 400; overflow-wrap: anywhere; }
+@media (max-width: 26rem) { .canal { grid-template-columns: 1fr; gap: 0.25rem; } }
+.canais a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s, color .2s; }
+.canais a:hover { color: var(--terra-escuro); border-color: var(--terra-escuro); }
+@media (max-width: 48rem) { .contato { grid-template-columns: 1fr; } }
+
+.rodape { border-top: 1px solid color-mix(in srgb, var(--fio) 55%, transparent); padding-block: 2rem; }
+.rodape .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--suave); font-weight: 400; }
+.rodape img { height: 2rem; width: auto; }
+
+/* Ampliar foto */
+.visor { position: fixed; inset: 0; z-index: 50; background: rgba(46, 38, 32, 0.94); display: grid; place-items: center; padding: 1rem; }
+.visor img { max-height: 86vh; width: auto; max-width: 100%; background: var(--areia); }
+.visor p { color: var(--areia); text-align: center; margin-top: 1rem; font-size: 0.95rem; max-width: 40rem; }
+.visor button { position: absolute; top: calc(1rem + env(safe-area-inset-top, 0px)); right: 1rem; background: none; border: 1px solid rgba(244,236,225,.5); color: var(--areia); font: 500 0.75rem var(--sans); letter-spacing: .2em; text-transform: uppercase; padding: .6rem 1rem; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Bamba Arquitetura, voltar ao início"><img src="img/logo.png" alt="bamba. Arquitetura &amp; Interiores" width="865" height="304"></a>
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#projetos">Projetos</a>
+      <a class="opcional" href="#a-bamba">A Bamba</a>
+      <a class="opcional" href="#atuacao">Atuação</a>
+      <a class="contato-link" href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="abertura">
+    <img class="abertura__fundo" src="img/abertura.jpg" alt="" width="1376" height="768">
+    <div class="wrap abertura__conteudo">
+      <p class="eyebrow">Arquitetura e urbanismo</p>
+      <h1><img src="img/logo-branco.png" alt="Bamba Arquitetura &amp; Interiores" width="865" height="304"></h1>
+      <p class="abertura__frase">Uma arquitetura pode ter personalidade e, ainda assim, ser inteiramente de quem a ocupa.</p>
+    </div>
+  </section>
+
+  <section class="secao" id="a-bamba">
+    <div class="wrap bamba">
+      <figure><img src="img/viviane.jpg" alt="Viviane Carvalho, arquiteta e urbanista" width="960" height="1280" loading="lazy"></figure>
+      <div class="bamba__texto">
+        <p class="eyebrow">A Bamba</p>
+        <h2 class="titulo">Bamba vem do quimbundo: <i>aquele que tem gingado.</i></h2>
+        <p class="lead">A gente acredita em uma arquitetura que sabe se movimentar: entre técnica e sensibilidade, entre o que o espaço pede e o que cada projeto pode ser.</p>
+        <p class="lead">Projetamos com repertório e intenção, buscando equilíbrio entre personalidade, contexto e funcionalidade, sem fórmulas prontas.</p>
+        <div class="assinatura"><strong>Viviane Carvalho</strong><span>Arquiteta e urbanista · fundadora</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--bege" aria-labelledby="t-metodo">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="eyebrow">Olhar e método</p>
+        <h2 class="titulo" id="t-metodo">Um projeto nasce de um encontro.</h2>
+      </div>
+      <div class="encontro">
+        <article><h3>O que você traz</h3><p>A rotina, as necessidades, os hábitos e a forma como quer viver o espaço.</p></article>
+        <article><h3>O que a Bamba traz</h3><p>Repertório, técnica, leitura do contexto e uma visão clara de projeto.</p></article>
+      </div>
+      <ol class="etapas" aria-label="Etapas do projeto">
+        <li>Escuta</li>
+        <li>Leitura do contexto</li>
+        <li>Conceito</li>
+        <li>Desenvolvimento técnico</li>
+        <li>Soluções com personalidade</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao" id="projetos" aria-labelledby="t-projetos">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="eyebrow">Projetos selecionados</p>
+        <h2 class="titulo" id="t-projetos">Cada projeto responde a um contexto e a uma forma de viver.</h2>
+      </div>
+
+      <div class="projetos">
+        <article class="projeto">
+          <div class="projeto__texto">
+            <p class="projeto__num">01</p>
+            <h3>Loja FIT</h3>
+            <p class="projeto__tipo">Comercial · Shopping Teresópolis</p>
+            <p>Uma loja de artigos esportivos que fala de esporte pela arquitetura, e não pelo excesso de marca.</p>
+            <p>Uma pista vermelha desenhada no piso organiza o percurso: da vitrine à ilha central, e dali ao caixa e aos provadores.</p>
+            <p>A linguagem é minimalista, e o vinho entra como cor de destaque.</p>
+            <p class="projeto__nota">Madeira, metal preto e luz trabalhando juntos como sistema de exposição.</p>
+          </div>
+          <div class="galeria">
+            <button class="grande" type="button"><img src="img/fit-1.jpg" alt="Interior da Loja FIT: ilha central com bolas e tênis, anéis de luz suspensos e pista vermelha no piso" loading="lazy"></button>
+            <button class="planta vertical" type="button"><img src="img/fit-planta.png" alt="Planta de layout da Loja FIT com a pista vermelha, araras, ilha central, caixa, provadores e estoque" loading="lazy"></button>
+            <button type="button"><img src="img/fit-3.jpg" alt="Fachada da Loja FIT com vitrines e acesso central" loading="lazy"></button>
+            <button type="button"><img src="img/fit-4.jpg" alt="Provador com espelho iluminado" loading="lazy"></button>
+            <button type="button"><img src="img/fit-5.jpg" alt="Vista frontal da parede de tênis com bancos estofados" loading="lazy"></button>
+            <button type="button"><img src="img/fit-6.jpg" alt="Araras metálicas, quadros esportivos e espelho na área de roupas" loading="lazy"></button>
+            <button class="grande" type="button"><img src="img/fit-2.jpg" alt="Parede expositora de tênis com anéis de luz e bancos estofados" loading="lazy"></button>
+          </div>
+        </article>
+
+        <article class="projeto">
+          <div class="projeto__texto">
+            <p class="projeto__num">02</p>
+            <h3>Cozinha Alecrim</h3>
+            <p class="projeto__tipo">Residencial · Reforma</p>
+            <p>Uma cozinha compartimentada ganhou amplitude, luz natural e contato com o exterior.</p>
+            <p>A ilha aproxima quem cozinha de quem chega, e a lavanderia foi integrada sem invadir a cozinha.</p>
+            <p class="projeto__nota">Mais luz, mais casa: tudo tem lugar, e o espaço fica pronto para receber.</p>
+          </div>
+          <div class="galeria">
+            <button class="grande" type="button"><img src="img/alecrim-1.jpg" alt="Cozinha reformada: ilha com cooktop, marcenaria verde-sálvia, nicho de madeira e arandelas" loading="lazy"></button>
+            <div class="comparativo">
+              <figure>
+                <figcaption>Antes · levantamento</figcaption>
+                <button class="planta" type="button"><img src="img/alecrim-levantamento.png" alt="Planta de levantamento: cozinha, despensa e área de serviço separadas por paredes" loading="lazy"></button>
+              </figure>
+              <figure>
+                <figcaption>Depois · projeto Bamba</figcaption>
+                <button class="planta" type="button"><img src="img/alecrim-planta.png" alt="Planta do projeto: cozinha aberta com ilha central e lavanderia integrada" loading="lazy"></button>
+              </figure>
+            </div>
+            <button type="button"><img src="img/alecrim-2.jpg" alt="Vista da cozinha em direção às portas de vidro para o jardim" loading="lazy"></button>
+            <button type="button"><img src="img/alecrim-3.jpg" alt="Ilha com cooktop e banquetas diante da bancada com janela" loading="lazy"></button>
+            <button type="button"><img src="img/alecrim-4.jpg" alt="Bancada com janela horizontal voltada para as árvores" loading="lazy"></button>
+            <button type="button"><img src="img/alecrim-5.jpg" alt="Lavanderia integrada com armários e máquina embutida" loading="lazy"></button>
+          </div>
+        </article>
+
+        <article class="projeto">
+          <div class="projeto__texto">
+            <p class="projeto__num">03</p>
+            <h3>Atlântico Golfe</h3>
+            <p class="projeto__tipo">Interiores · Barra da Tijuca, RJ</p>
+            <p>Estar e jantar integrados, com madeira, palhinha e linho numa paleta calma, e a luz indireta desenhando o espaço.</p>
+            <p class="projeto__nota">Calma, sem ser fria: madeira e tons claros de dia, luz em camadas à noite.</p>
+          </div>
+          <div class="galeria">
+            <button class="grande" type="button"><img src="img/atlantico-1.jpg" alt="Sala de jantar com mesa de madeira, cadeiras de palhinha e pendentes orgânicos, integrada ao estar" loading="lazy"></button>
+            <button type="button"><img src="img/atlantico-2.jpg" alt="Vista longa da sala: poltronas, sofá, aparador de madeira e mesa de jantar ao fundo" loading="lazy"></button>
+            <button type="button"><img src="img/atlantico-3.jpg" alt="Canto de leitura com duas poltronas, luminária de madeira e janela de canto" loading="lazy"></button>
+            <button type="button"><img src="img/atlantico-4.jpg" alt="Parede da TV com textura, prateleira iluminada e cantinho do café" loading="lazy"></button>
+            <button type="button"><img src="img/atlantico-5.jpg" alt="Sofá claro diante da janela, com a mesa de jantar ao lado" loading="lazy"></button>
+          </div>
+        </article>
+
+        <article class="projeto">
+          <div class="projeto__texto">
+            <p class="projeto__num">04</p>
+            <h3>Casa na serra</h3>
+            <p class="projeto__tipo">Residencial · Reforma · Região serrana</p>
+            <p>Uma casa antiga, com o layout remodelado para atender às necessidades de uma nova família.</p>
+            <p>Na fachada, mudanças sem descaracterizar: peitoris mais baixos e vãos mais largos trazem mais luz natural.</p>
+            <p class="projeto__nota">Um jardim, várias ambiências: parquinho, área de relaxamento e piscina, cada um com seu clima.</p>
+          </div>
+          <div class="galeria">
+            <button class="grande" type="button"><img src="img/serra-1.jpg" alt="Varanda com deck de madeira, pergolado e árvore preservada atravessando o piso" loading="lazy"></button>
+            <button class="planta vertical" type="button"><img src="img/serra-implantacao.png" alt="Implantação vista de cima: casa, jardim, piscina, parquinho e área de relaxamento" loading="lazy"></button>
+            <button type="button"><img src="img/serra-3.jpg" alt="Jardim ao pôr do sol com piscina, espreguiçadeiras e área de relaxamento" loading="lazy"></button>
+            <button type="button"><img src="img/serra-5.jpg" alt="Parquinho com casa na árvore e escorregador" loading="lazy"></button>
+            <button type="button"><img src="img/serra-2.jpg" alt="Fachada principal com revestimento de pedra, janelas amplas e pergolado de madeira" loading="lazy"></button>
+            <button type="button"><img src="img/serra-4.jpg" alt="Fachada lateral ao entardecer com janelas emolduradas em pedra" loading="lazy"></button>
+            <button class="grande" type="button"><img src="img/serra-6.jpg" alt="Circulação lateral com piso de pedra, janelas e canteiro" loading="lazy"></button>
+          </div>
+        </article>
+
+        <article class="projeto">
+          <div class="projeto__texto">
+            <p class="projeto__num">05</p>
+            <h3>CARE</h3>
+            <p class="projeto__tipo">Comercial · Centro auditivo de reabilitação</p>
+            <p>O projeto parte do manual da marca e transforma suas cores e formas em espaço, acolhedor para um público amplo e muitas vezes mais velho.</p>
+            <p>Na fachada, os círculos atraem o olhar de quem passa e filtram a vista para a recepção.</p>
+            <p class="projeto__nota">Recepção com 10,94 m² e atendimento com 6,27 m²: acolher em pouco espaço.</p>
+          </div>
+          <div class="galeria">
+            <button class="grande" type="button"><img src="img/care-1.jpg" alt="Recepção do CARE: balcão curvo em madeira e verde e poltronas de espera" loading="lazy"></button>
+            <button class="planta vertical" type="button"><img src="img/care-planta.png" alt="Planta do térreo: recepção, sala de atendimento, escada e lavabo" loading="lazy"></button>
+            <button type="button"><img src="img/care-4.jpg" alt="Fachada do CARE com círculos verdes no vidro e letreiro da marca" loading="lazy"></button>
+            <button type="button"><img src="img/care-2.jpg" alt="Espera com poltronas de madeira e faixa verde iluminada" loading="lazy"></button>
+            <button class="grande" type="button"><img src="img/care-3.jpg" alt="Sala de atendimento com parede verde, mesa em pedra e cabine audiométrica em madeira" loading="lazy"></button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--bege" aria-labelledby="t-vida">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="eyebrow">Além da primeira foto</p>
+        <h2 class="titulo" id="t-vida">Arquitetura que acompanha a vida</h2>
+        <p class="lead">Um projeto se prova no uso diário, não só na primeira foto.</p>
+      </div>
+      <div class="vida">
+        <div><h3>Rotina</h3><p>Espaços organizados a partir de como o dia realmente acontece.</p></div>
+        <div><h3>Circulação</h3><p>Percursos claros, sem sobras e sem gargalos.</p></div>
+        <div><h3>Iluminação</h3><p>Luz natural bem aproveitada e luz artificial pensada em camadas.</p></div>
+        <div><h3>Materiais</h3><p>Escolhidos pela beleza e pelo comportamento ao longo do tempo.</p></div>
+        <div><h3>Armazenamento</h3><p>Um lugar certo para cada coisa, previsto desde o início.</p></div>
+        <div><h3>Conforto</h3><p>Térmico, acústico e visual, atento ao clima da serra e da cidade.</p></div>
+        <div><h3>Manutenção</h3><p>Soluções que continuam simples de cuidar depois da entrega.</p></div>
+        <div><h3>Permanência</h3><p>Um desenho que não depende da tendência do ano.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao atuacao" id="atuacao" aria-labelledby="t-atuacao">
+    <div class="wrap">
+      <div class="cabeca">
+        <p class="eyebrow">Atuação</p>
+        <h2 class="titulo" id="t-atuacao">Da casa inteira ao detalhe da marcenaria.</h2>
+      </div>
+      <div class="servicos">
+        <div><h3>Arquitetura residencial</h3><p>Casas novas, reformas e ampliações, do estudo preliminar ao projeto executivo.</p></div>
+        <div><h3>Interiores</h3><p>Layout, marcenaria, iluminação, materiais e especificação de cada ambiente.</p></div>
+        <div><h3>Projetos comerciais</h3><p>Espaços de trabalho e atendimento com identidade e boa operação.</p></div>
+      </div>
+      <p class="regiao">Teresópolis · Rio de Janeiro · Projetos online</p>
+    </div>
+  </section>
+
+  <section class="secao fechamento" aria-label="Manifesto">
+    <div class="wrap">
+      <blockquote>Arquitetura com opinião, <i>feita em diálogo.</i></blockquote>
+      <img src="img/monograma.png" alt="" width="842" height="986">
+    </div>
+  </section>
+
+  <section class="secao" id="contato" aria-labelledby="t-contato">
+    <div class="wrap contato">
+      <div class="contato__intro">
+        <p class="eyebrow">Contato</p>
+        <h2 class="titulo" id="t-contato">Viviane Carvalho</h2>
+        <p class="lead">Arquiteta e urbanista. Atendimento em Teresópolis, no Rio de Janeiro e em projetos online.</p>
+        <a class="botao" href="https://wa.me/5521981311456" target="_blank" rel="noopener">Conversar pelo WhatsApp <span aria-hidden="true">↗</span></a>
+      </div>
+      <dl class="canais">
+        <div class="canal"><dt>WhatsApp</dt><dd><a href="https://wa.me/5521981311456" target="_blank" rel="noopener">(21) 98131-1456</a></dd></div>
+        <div class="canal"><dt>Instagram</dt><dd><a href="https://www.instagram.com/bambaarquitetura/" target="_blank" rel="noopener">@bambaarquitetura</a></dd></div>
+        <div class="canal"><dt>E-mail</dt><dd><a href="mailto:bambaarquitetura@gmail.com">bambaarquitetura@gmail.com</a></dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <img src="img/logo.png" alt="Bamba Arquitetura &amp; Interiores" width="865" height="304">
+    <p>Arquitetura + interiores · Teresópolis · Rio de Janeiro · Online</p>
+  </div>
+</footer>
+
+<div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button type="button" id="fechar-visor">Fechar</button>
+  <figure style="margin:0"><img id="visor-img" src="" alt=""><p id="visor-legenda"></p></figure>
+</div>
+
+<script>
+(function () {
+  var visor = document.getElementById('visor');
+  var img = document.getElementById('visor-img');
+  var legenda = document.getElementById('visor-legenda');
+  var fechar = document.getElementById('fechar-visor');
+  var origem = null;
+  document.querySelectorAll('.galeria button').forEach(function (b) {
+    b.setAttribute('aria-label', 'Ampliar foto');
+    b.addEventListener('click', function () {
+      var foto = b.querySelector('img');
+      img.src = foto.src; img.alt = foto.alt; legenda.textContent = foto.alt;
+      origem = b; visor.hidden = false; fechar.focus();
+    });
+  });
+  function sair() { visor.hidden = true; img.src = ''; if (origem) origem.focus(); }
+  fechar.addEventListener('click', sair);
+  visor.addEventListener('click', function (e) { if (e.target === visor) sair(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !visor.hidden) sair(); });
+})();
+</script>
+</body>
+</html>
