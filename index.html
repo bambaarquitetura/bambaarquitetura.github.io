@@ -80,7 +80,8 @@ p { margin: 0; }
 
 /* Abertura: render desfocado ao fundo, logo em claro */
 .abertura { position: relative; overflow: hidden; background: var(--cafe); display: flex; align-items: flex-end; min-height: min(46rem, 86vh); }
-.abertura__fundo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; filter: blur(4px); transform: scale(1.05); }
+.abertura__fundo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; filter: blur(4px);
+  transform: translate3d(var(--hx, 0px), var(--hy, 0px), 0) scale(1.08); transition: transform 1.8s cubic-bezier(.2,.7,.2,1); will-change: transform; }
 .abertura::after { content: ""; position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(46, 38, 32, 0.78), rgba(46, 38, 32, 0.5) 55%, rgba(46, 38, 32, 0.38)); }
 .abertura__conteudo { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.75rem; padding-block: clamp(6rem, 14vw, 9rem) clamp(3.5rem, 8vw, 6rem); }
@@ -130,8 +131,17 @@ p { margin: 0; }
 .projeto__nota { font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.35; color: var(--cafe); border-top: 1px solid var(--fio); padding-top: 1.1rem; margin-top: 0.4rem; }
 .galeria { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
 .galeria button { padding: 0; border: 0; background: var(--bege); cursor: zoom-in; overflow: hidden; display: block; }
-.galeria img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-.galeria button:hover img { transform: scale(1.03); }
+.galeria img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3;
+  transform: translate3d(var(--mx, 0px), var(--my, 0px), 0) scale(var(--zoom, 1));
+  transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .8s ease; will-change: transform; }
+/* Foto "viva": no computador, aproxima e acompanha o cursor; no celular, assenta ao aparecer na tela */
+@media (hover: hover) and (pointer: fine) {
+  .galeria button:not(.planta):hover img { --zoom: 1.07; filter: saturate(1.06); }
+}
+@media (hover: none) {
+  .movimento .galeria button:not(.planta) img { --zoom: 1.06; transition-duration: 1.8s; }
+  .movimento .galeria button:not(.planta).visivel img { --zoom: 1; }
+}
 .galeria .grande { grid-column: 1 / -1; }
 .galeria .grande img { aspect-ratio: 16 / 10; }
 /* Plantas: inteiras, sem fundo e sem corte */
@@ -202,6 +212,7 @@ p { margin: 0; }
 .visor button { position: absolute; top: calc(1rem + env(safe-area-inset-top, 0px)); right: 1rem; background: none; border: 1px solid rgba(244,236,225,.5); color: var(--areia); font: 500 0.75rem var(--sans); letter-spacing: .2em; text-transform: uppercase; padding: .6rem 1rem; cursor: pointer; }
 
 @media (prefers-reduced-motion: reduce) {
+  .galeria img, .abertura__fundo { transform: none !important; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
@@ -449,6 +460,37 @@ p { margin: 0; }
 </div>
 
 <script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('movimento');
+  var fino = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (fino) {
+    document.querySelectorAll('.galeria button:not(.planta)').forEach(function (b) {
+      var img = b.querySelector('img');
+      b.addEventListener('mousemove', function (e) {
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        img.style.setProperty('--mx', (-x * r.width * 0.05).toFixed(1) + 'px');
+        img.style.setProperty('--my', (-y * r.height * 0.05).toFixed(1) + 'px');
+      });
+      b.addEventListener('mouseleave', function () { img.style.setProperty('--mx', '0px'); img.style.setProperty('--my', '0px'); });
+    });
+    var capa = document.querySelector('.abertura'), fundo = document.querySelector('.abertura__fundo');
+    if (capa && fundo) {
+      capa.addEventListener('mousemove', function (e) {
+        var r = capa.getBoundingClientRect();
+        fundo.style.setProperty('--hx', (-((e.clientX - r.left) / r.width - 0.5) * 24).toFixed(1) + 'px');
+        fundo.style.setProperty('--hy', (-((e.clientY - r.top) / r.height - 0.5) * 16).toFixed(1) + 'px');
+      });
+      capa.addEventListener('mouseleave', function () { fundo.style.setProperty('--hx', '0px'); fundo.style.setProperty('--hy', '0px'); });
+    }
+  } else if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (itens) {
+      itens.forEach(function (i) { if (i.isIntersecting) { i.target.classList.add('visivel'); obs.unobserve(i.target); } });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.galeria button:not(.planta)').forEach(function (b) { obs.observe(b); });
+  }
+})();
 (function () {
   var visor = document.getElementById('visor');
   var img = document.getElementById('visor-img');
